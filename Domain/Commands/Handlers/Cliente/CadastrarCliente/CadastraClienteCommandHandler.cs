@@ -1,6 +1,7 @@
 using Domain.Commands.Cliente.CadastrarClienteAsync;
 using Domain.Interfaces;
 using Domain.Responses;
+using Domain.ValueObjects;
 using MediatR;
 
 namespace Domain.Commands.Handlers.Cliente.CadastrarCliente
@@ -14,7 +15,7 @@ namespace Domain.Commands.Handlers.Cliente.CadastrarCliente
         }
         public async Task<ClienteResponse> Handle(CadastraClienteCommand request, CancellationToken cancellationToken)
         {
-            var cliente = new Domain.ValueObjects.ClienteValueObject
+            var cliente = new ClienteValueObject
             {
                 NomeCliente = request.NomeCliente,
                 EmailCliente = request.EmailCliente,
