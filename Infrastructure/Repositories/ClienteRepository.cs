@@ -17,16 +17,8 @@ namespace Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task CadastrarClienteAsync(ClienteValueObject clienteVO)
+        public async Task CadastrarClienteAsync(Cliente cliente)
         {
-            var cliente = new Cliente
-            {
-                CodigoCliente = clienteVO.CodigoCliente,
-                NomeCliente = clienteVO.NomeCliente,
-                EmailCliente = clienteVO.EmailCliente,
-                CepCliente = clienteVO.CepCliente
-            };
-
             await _context.AddAsync(cliente);
             await _context.SaveChangesAsync();
         }
