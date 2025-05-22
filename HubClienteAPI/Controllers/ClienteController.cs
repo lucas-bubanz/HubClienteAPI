@@ -19,10 +19,9 @@ namespace HubClienteAPI.Controllers
         public async Task<ActionResult<ClienteValueObject>> AdicionarCliente([FromBody] CadastraClienteCommand command)
         {
             var result = await _mediator.Send(command);
-            if (result is null)
-                return BadRequest();
+            if (result is null) return BadRequest();
 
-            return Ok(result);
+            return Created(string.Empty, result);
         }
     }
 }

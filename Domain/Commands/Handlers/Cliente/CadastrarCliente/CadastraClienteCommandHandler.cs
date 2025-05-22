@@ -29,7 +29,7 @@ namespace Domain.Commands.Handlers.Cliente.CadastrarCliente
             var entidade = _mapper.Map<Domain.Entities.Cliente>(clienteVO);
             await _clienteRepository.CadastrarClienteAsync(entidade);
 
-            return new ClienteResponse{};
+            return new ClienteResponse { CodigoCliente = entidade.CodigoCliente };
         }
     }
 }
