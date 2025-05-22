@@ -1,4 +1,5 @@
 using AutoMapper;
+using Domain.Commands.Clientes.CadastrarCliente;
 using Domain.Entities;
 using Domain.ValueObjects;
 
@@ -10,6 +11,7 @@ namespace Infrastructure.Mappings
         {
             CreateMap<ClienteValueObject, Cliente>();
             CreateMap<Cliente, ClienteValueObject>();
+            CreateMap<CadastraClienteCommand, ClienteValueObject>();
         }
     }
 }

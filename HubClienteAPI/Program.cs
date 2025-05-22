@@ -3,9 +3,8 @@ using Infrastructure.Context;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using Domain.Commands.Handlers.Cliente.CadastrarCliente;
+using Domain.Commands.Handlers.Clientes.CadastrarCliente;
 using Infrastructure.Mappings;
-using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 

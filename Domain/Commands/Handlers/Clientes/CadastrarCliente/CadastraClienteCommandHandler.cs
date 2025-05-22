@@ -1,11 +1,12 @@
 using AutoMapper;
-using Domain.Commands.Cliente.CadastrarClienteAsync;
+using Domain.Commands.Clientes.CadastrarCliente;
+using Domain.Entities;
 using Domain.Interfaces;
 using Domain.Responses;
 using Domain.ValueObjects;
 using MediatR;
 
-namespace Domain.Commands.Handlers.Cliente.CadastrarCliente
+namespace Domain.Commands.Handlers.Clientes.CadastrarCliente
 {
     public class CadastraClienteCommandHandler : IRequestHandler<CadastraClienteCommand, ClienteResponse>
     {
@@ -19,17 +20,12 @@ namespace Domain.Commands.Handlers.Cliente.CadastrarCliente
         public async Task<ClienteResponse> Handle(CadastraClienteCommand request, CancellationToken cancellationToken)
         {
 
-            var clienteVO = new ClienteValueObject
-            {
-                NomeCliente = request.NomeCliente,
-                EmailCliente = request.EmailCliente,
-                CepCliente = request.CepCliente
-            };
+            var clienteVO = _mapper.Map<ClienteValueObject>(request);
+            var entidade = _mapper.Map<Cliente>(clienteVO);
 
-            var entidade = _mapper.Map<Domain.Entities.Cliente>(clienteVO);
             await _clienteRepository.CadastrarClienteAsync(entidade);
 
-            return new ClienteResponse { CodigoCliente = entidade.CodigoCliente };
+            return new ClienteResponse { };
         }
     }
 }

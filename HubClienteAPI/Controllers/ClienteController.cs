@@ -1,4 +1,4 @@
-using Domain.Commands.Cliente.CadastrarClienteAsync;
+using Domain.Commands.Clientes.CadastrarCliente;
 using Domain.ValueObjects;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
