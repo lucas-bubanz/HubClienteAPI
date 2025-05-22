@@ -1,7 +1,6 @@
 using AutoMapper;
 using Domain.Commands.Cliente.CadastrarClienteAsync;
 using Domain.Interfaces;
-using Domain.Entities;
 using Domain.Responses;
 using Domain.ValueObjects;
 using MediatR;
