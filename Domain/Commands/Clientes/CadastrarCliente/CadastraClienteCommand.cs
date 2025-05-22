@@ -1,7 +1,7 @@
 using Domain.Responses;
 using MediatR;
 
-namespace Domain.Commands.Cliente.CadastrarClienteAsync
+namespace Domain.Commands.Clientes.CadastrarCliente
 {
     public class CadastraClienteCommand : IRequest<ClienteResponse>
     {

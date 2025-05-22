@@ -2,9 +2,7 @@ namespace Domain.Responses
 {
     public class ClienteResponse
     {
+        public Guid CodigoCliente { get; set; }
         public string? NomeCliente { get; set; }
-        public string? Email { get; set; }
-        public string? Cep { get; set; }
-        public string Endereco { get; set; } = string.Empty;
     }
 }
