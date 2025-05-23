@@ -1,5 +1,5 @@
-using Domain.Entities;
 using Domain.Interfaces;
+using Domain.Models.Entities;
 using Domain.ValueObjects;
 using Infrastructure.Context;
 

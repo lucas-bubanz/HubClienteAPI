@@ -1,4 +1,4 @@
-using Domain.Entities;
+using Domain.Models.Entities;
 using Domain.ValueObjects;
 
 namespace Domain.Interfaces
