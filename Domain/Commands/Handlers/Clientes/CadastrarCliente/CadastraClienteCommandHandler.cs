@@ -25,7 +25,7 @@ namespace Domain.Commands.Handlers.Clientes.CadastrarCliente
 
             await _clienteRepository.CadastrarClienteAsync(entidade);
 
-            return new ClienteResponse { };
+            return new ClienteResponse { CodigoCliente = entidade.CodigoCliente };
         }
     }
 }
