@@ -18,5 +18,7 @@ namespace Domain.Models.Entities
         [Required]
         [Column("cep_cliente")]
         public string? CepCliente { get; set; }
+
+        public Endereco? Endereco { get; set; }
     }
 }
