@@ -1,31 +1,27 @@
-using AutoMapper;
 using Domain.Commands.Clientes.CadastrarCliente;
-using Domain.Entities;
 using Domain.Interfaces;
+using Domain.Models.Mappers.Clientes;
 using Domain.Responses;
-using Domain.ValueObjects;
 using MediatR;
 
 namespace Domain.Commands.Handlers.Clientes.CadastrarCliente
 {
     public class CadastraClienteCommandHandler : IRequestHandler<CadastraClienteCommand, ClienteResponse>
     {
-        private readonly IClienteRepository _clienteRepository;
-        private readonly IMapper _mapper;
-        public CadastraClienteCommandHandler(IClienteRepository clienteRepository, IMapper mapper)
+        private readonly IClienteRepository _clienteRepository;        
+        public CadastraClienteCommandHandler(IClienteRepository clienteRepository)
         {
-            _clienteRepository = clienteRepository;
-            _mapper = mapper;
+            _clienteRepository = clienteRepository;            
         }
         public async Task<ClienteResponse> Handle(CadastraClienteCommand request, CancellationToken cancellationToken)
         {
 
-            var clienteVO = _mapper.Map<ClienteValueObject>(request);
-            var entidade = _mapper.Map<Cliente>(clienteVO);
+            var cliente = ValueObjectClienteMapper.Map(request);
+            var entidade = EntityClienteMapper.Map(cliente);
 
             await _clienteRepository.CadastrarClienteAsync(entidade);
 
-            return new ClienteResponse { };
+            return new ClienteResponse { CodigoCliente = entidade.CodigoCliente };
         }
     }
 }
