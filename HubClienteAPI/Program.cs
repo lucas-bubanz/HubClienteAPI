@@ -7,6 +7,7 @@ using Domain.Commands.Handlers.Clientes.CadastrarCliente;
 using ExternalServices.Interfaces;
 using ExternalServices.Services;
 using Domain.Services;
+using Domain.Models.Validators.Clientes.CadastrarClienteValidator;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
 builder.Services.AddScoped<ExternalViaCepService>();
+builder.Services.AddScoped<CadastrarClienteValidator>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CadastraClienteCommandHandler).Assembly));
