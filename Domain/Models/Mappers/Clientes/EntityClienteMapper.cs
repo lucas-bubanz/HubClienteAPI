@@ -1,5 +1,4 @@
 using Domain.Models.Entities;
-using Domain.Models.Mappers.Enderecos;
 using Domain.Responses;
 using Domain.ValueObjects;
 
@@ -9,6 +8,8 @@ namespace Domain.Models.Mappers.Clientes
     {
         public static Cliente Map(ClienteValueObject valueObject, ViaCepResponse viaCepResponse)
         {
+            ArgumentNullException.ThrowIfNull(viaCepResponse);
+            
             var endereco = new Endereco
             {
                 Logradouro = viaCepResponse.Logradouro,
@@ -26,7 +27,7 @@ namespace Domain.Models.Mappers.Clientes
                 CodigoCliente = valueObject.CodigoCliente,
                 NomeCliente = valueObject.NomeCliente,
                 EmailCliente = valueObject.EmailCliente,
-                CepCliente = valueObject.CepCliente,
+                CepCliente = valueObject.CepCliente ?? string.Empty,
                 Endereco = endereco
             };
         }

@@ -2,7 +2,6 @@ using Domain.Interfaces;
 using Infrastructure.Context;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 using Domain.Commands.Handlers.Clientes.CadastrarCliente;
 using ExternalServices.Interfaces;
 using ExternalServices.Services;
@@ -26,7 +25,7 @@ builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
 builder.Services.AddScoped<ExternalViaCepService>();
 builder.Services.AddScoped<CadastrarClienteValidator>();
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+// builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CadastraClienteCommandHandler).Assembly));
 
 builder.Services.AddDbContext<HubClienteContext>(options =>
