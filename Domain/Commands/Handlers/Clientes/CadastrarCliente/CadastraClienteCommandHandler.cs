@@ -16,25 +16,29 @@ namespace Domain.Commands.Handlers.Clientes.CadastrarCliente
         public CadastraClienteCommandHandler
         (
             IClienteRepository clienteRepository,
-            ExternalViaCepService externalViaCepService
+            ExternalViaCepService externalViaCepService,
+            CadastrarClienteValidator validator
         )
         {
             _clienteRepository = clienteRepository;
             _externalViaCepService = externalViaCepService;
-            _validator = new CadastrarClienteValidator();
+            _validator = validator;
         }
         public async Task<ClienteResponse> Handle(CadastraClienteCommand request, CancellationToken cancellationToken)
         {            
             var clienteRequest = ValueObjectClienteMapper.Map(request);
 
             if (string.IsNullOrWhiteSpace(clienteRequest.CepCliente) || !_validator.ValidaFormatacaoCep(clienteRequest.CepCliente))
-                throw new Exception("O CPF digitado é inválido");
+                throw new Exception("O CEP digitado é inválido");
             
             var resultadoValidator = await _validator.ValidateAsync(clienteRequest, cancellationToken);
 
             if (!resultadoValidator.IsValid)
             {
-                var erros = resultadoValidator.Errors.Select(e => e.ErrorMessage).ToList();                
+                return new ClienteResponse 
+                { 
+                    Errors = [.. resultadoValidator.Errors.Select(e => e.ErrorMessage)]
+                };
             }                
 
             var enderecoCliente = await _externalViaCepService.ConsultaApiCep(clienteRequest.CepCliente);            
