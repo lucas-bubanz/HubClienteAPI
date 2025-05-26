@@ -25,7 +25,7 @@ namespace Domain.Models.Validators.Clientes.CadastrarClienteValidator
                 .EmailAddress()
                 .WithMessage("O e-mail do cliente não é válido");
         }
-        public bool ValidaFormatacaoCep(string cep)
+        private static bool ValidaFormatacaoCep(string cep)
         {                        
             return !string.IsNullOrWhiteSpace(cep) && cep.Length == 8 && cep.All(char.IsDigit);
         }
