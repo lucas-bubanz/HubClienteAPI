@@ -13,7 +13,9 @@ namespace Domain.Models.Mappers.ViaCep
                 Complemento = viaCepResponse.Complemento,
                 Bairro = viaCepResponse.Bairro,
                 Localidade = viaCepResponse.Localidade,
-                Uf = viaCepResponse.Uf
+                Uf = viaCepResponse.Uf,
+                Estado = viaCepResponse.Estado,
+                Regiao = viaCepResponse.Regiao
             };
         }
     }

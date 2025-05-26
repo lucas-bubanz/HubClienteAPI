@@ -12,7 +12,9 @@ namespace Domain.Models.Mappers.Enderecos
                 Complemento = endereco.Complemento,
                 Localidade = endereco.Localidade,
                 Logradouro = endereco.Logradouro,
-                Uf = endereco.Uf                
+                Uf = endereco.Uf,
+                Estado = endereco.Estado,
+                Regiao = endereco.Regiao
             };
         }
     }
