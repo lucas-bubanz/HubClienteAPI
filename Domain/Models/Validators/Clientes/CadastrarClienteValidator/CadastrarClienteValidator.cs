@@ -16,6 +16,7 @@ namespace Domain.Models.Validators.Clientes.CadastrarClienteValidator
             RuleFor(x => x.CepCliente)
                 .NotEmpty()
                 .WithMessage("O CEP é obrigatório")
+                .Length(8)
                 .Must(cep => !string.IsNullOrWhiteSpace(cep) && ValidaFormatacaoCep(cep))
                 .WithMessage("CEP inválido - deve conter 8 dígitos numéricos e sem formatação com '-'");
 
@@ -27,7 +28,7 @@ namespace Domain.Models.Validators.Clientes.CadastrarClienteValidator
         }
         private static bool ValidaFormatacaoCep(string cep)
         {                        
-            return !string.IsNullOrWhiteSpace(cep) && cep.Length == 8 && cep.All(char.IsDigit);
+            return cep.All(char.IsDigit);
         }
     }    
 }
