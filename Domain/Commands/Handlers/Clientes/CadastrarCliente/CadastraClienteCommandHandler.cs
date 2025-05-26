@@ -27,10 +27,6 @@ namespace Domain.Commands.Handlers.Clientes.CadastrarCliente
         public async Task<ClienteResponse> Handle(CadastraClienteCommand request, CancellationToken cancellationToken)
         {            
             var clienteRequest = ValueObjectClienteMapper.Map(request);
-
-            if (string.IsNullOrWhiteSpace(clienteRequest.CepCliente) || !_validator.ValidaFormatacaoCep(clienteRequest.CepCliente))
-                throw new Exception("O CEP digitado é inválido");
-            
             var resultadoValidator = await _validator.ValidateAsync(clienteRequest, cancellationToken);
 
             if (!resultadoValidator.IsValid)
@@ -41,8 +37,7 @@ namespace Domain.Commands.Handlers.Clientes.CadastrarCliente
                 };
             }                
 
-            var enderecoCliente = await _externalViaCepService.ConsultaApiCep(clienteRequest.CepCliente);            
-            
+            var enderecoCliente = await _externalViaCepService.ConsultaApiCep(clienteRequest.CepCliente);                        
             var entidade = EntityClienteMapper.Map(clienteRequest, enderecoCliente);
             await _clienteRepository.CadastrarClienteAsync(entidade);
 
