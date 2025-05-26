@@ -17,7 +17,7 @@ namespace Domain.Models.Validators.Clientes.CadastrarClienteValidator
                 .NotEmpty()
                 .WithMessage("O CEP é obrigatório")
                 .Must(cep => !string.IsNullOrWhiteSpace(cep) && ValidaFormatacaoCep(cep))
-                .WithMessage("CEP inválido - deve conter 8 dígitos numéricos");
+                .WithMessage("CEP inválido - deve conter 8 dígitos numéricos e sem formatação com '-'");
 
             RuleFor(x => x.EmailCliente)
                 .NotEmpty()
