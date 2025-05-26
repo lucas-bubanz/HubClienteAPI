@@ -35,7 +35,10 @@ namespace Domain.Commands.Handlers.Clientes.CadastrarCliente
                 { 
                     Errors = [.. resultadoValidator.Errors.Select(e => e.ErrorMessage)]
                 };
-            }                
+            }
+
+            if (String.IsNullOrEmpty(clienteRequest.CepCliente))
+                throw new Exception("CEP Deve ser preenchido");
 
             var enderecoCliente = await _externalViaCepService.ConsultaApiCep(clienteRequest.CepCliente);                        
             var entidade = EntityClienteMapper.Map(clienteRequest, enderecoCliente);
