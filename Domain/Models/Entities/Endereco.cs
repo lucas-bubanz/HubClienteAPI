@@ -24,6 +24,12 @@ namespace Domain.Models.Entities
         [Column("uf")]
         public string? Uf { get; set; }
 
+        [Column("estado")]
+        public string? Estado { get; set; }
+
+        [Column("regiao")]
+        public string? Regiao { get; set; }
+
         [Column("cliente_id")]
         public Guid CodigoCliente { get; set; }
 

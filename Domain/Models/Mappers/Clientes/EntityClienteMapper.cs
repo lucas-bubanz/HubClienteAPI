@@ -15,8 +15,10 @@ namespace Domain.Models.Mappers.Clientes
                 Complemento = viaCepResponse.Complemento,
                 Bairro = viaCepResponse.Bairro,
                 Localidade = viaCepResponse.Localidade,
-                Uf = viaCepResponse.Uf,           
-                CodigoCliente = valueObject.CodigoCliente     
+                Uf = viaCepResponse.Uf,
+                CodigoCliente = valueObject.CodigoCliente,
+                Estado = viaCepResponse.Estado,
+                Regiao = viaCepResponse.Regiao
             };
 
             return new Cliente
