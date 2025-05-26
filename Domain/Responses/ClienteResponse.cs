@@ -11,6 +11,6 @@ namespace Domain.Responses
         public string? NomeCliente { get; set; }    
         
         public List<string>? Errors { get; set; }
-        public bool Success => Errors == null || !Errors.Any();
+        public bool Success => Errors == null || Errors.Count == 0;
     }
 }
