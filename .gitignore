@@ -16,6 +16,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# ignore path .vscode
+.vscode/
+
 # ignore JSON
 *.json
 
