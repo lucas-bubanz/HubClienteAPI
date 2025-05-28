@@ -1,5 +1,4 @@
 using Domain.Commands.Clientes.CadastrarCliente;
-using Domain.ValueObjects;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +15,11 @@ namespace HubClienteAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ClienteValueObject>> AdicionarCliente([FromBody] CadastraClienteCommand command)
+        public async Task<ActionResult<Guid>> AdicionarCliente([FromBody] CadastraClienteCommand command)
         {
             var result = await _mediator.Send(command);
 
-            if (result.Errors != null)
-                return BadRequest(new { errors = result.Errors });
+            
 
             return Created(string.Empty, result);
         }

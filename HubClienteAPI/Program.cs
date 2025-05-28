@@ -2,12 +2,11 @@ using Domain.Interfaces;
 using Infrastructure.Context;
 using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Domain.Commands.Handlers.Clientes.CadastrarCliente;
 using ExternalServices.Interfaces;
 using ExternalServices.Services;
 using Domain.Services;
-using Domain.Models.Validators.Clientes.CadastrarClienteValidator;
 using Domain.Models.Validators.Clientes.ValidaCamposEnderecoValidator;
+using Domain.Commands.Clientes.CadastrarCliente;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +23,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 builder.Services.AddHttpClient<IViaCepService, ViaCepService>();
 builder.Services.AddScoped<ExternalViaCepService>();
-builder.Services.AddScoped<CadastrarClienteValidator>();
+builder.Services.AddScoped<CadastraClienteCommandValidator>();
 builder.Services.AddScoped<ValidaCamposEnderecoValidator>();
 
 // builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));

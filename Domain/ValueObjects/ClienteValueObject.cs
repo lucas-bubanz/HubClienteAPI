@@ -1,3 +1,5 @@
+using Domain.Responses;
+
 namespace Domain.ValueObjects
 {
     public class ClienteValueObject

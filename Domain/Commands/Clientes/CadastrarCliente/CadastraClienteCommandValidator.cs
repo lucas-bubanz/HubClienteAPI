@@ -1,11 +1,10 @@
-using Domain.ValueObjects;
 using FluentValidation;
 
-namespace Domain.Models.Validators.Clientes.CadastrarClienteValidator
+namespace Domain.Commands.Clientes.CadastrarCliente
 {
-    public class CadastrarClienteValidator : AbstractValidator<ClienteValueObject>
+    public class CadastraClienteCommandValidator : AbstractValidator<CadastraClienteCommand>
     {
-        public CadastrarClienteValidator()
+        public CadastraClienteCommandValidator()
         {
             RuleFor(x => x.NomeCliente)
                 .NotEmpty()
@@ -17,7 +16,7 @@ namespace Domain.Models.Validators.Clientes.CadastrarClienteValidator
                 .NotEmpty()
                 .WithMessage("O CEP é obrigatório")
                 .Length(8)
-                .Must(cep => !string.IsNullOrWhiteSpace(cep) && ValidaFormatacaoCep(cep))
+                .Must(cep => !string.IsNullOrWhiteSpace(cep) && cep.All(char.IsDigit))
                 .WithMessage("CEP inválido - deve conter 8 dígitos numéricos e sem formatação com '-'");
 
             RuleFor(x => x.EmailCliente)
@@ -26,9 +25,5 @@ namespace Domain.Models.Validators.Clientes.CadastrarClienteValidator
                 .EmailAddress()
                 .WithMessage("O e-mail do cliente não é válido");
         }
-        private static bool ValidaFormatacaoCep(string cep)
-        {                        
-            return cep.All(char.IsDigit);
-        }
-    }    
+    }
 }

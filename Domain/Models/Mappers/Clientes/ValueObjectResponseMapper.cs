@@ -1,15 +1,16 @@
+using Domain.Exceptions;
 using Domain.Models.Entities;
 using Domain.Responses;
 using Domain.ValueObjects;
 
 namespace Domain.Models.Mappers.Clientes
 {
-    public class EntityClienteMapper
+    public class ValueObjectResponseMapper
     {
+        public List<string>? Errors { get; set; }
+        public Guid CodigoCliente { get; set; }
         public static Cliente Map(ClienteValueObject valueObject, ViaCepResponse viaCepResponse)
         {
-            ArgumentNullException.ThrowIfNull(viaCepResponse);
-            
             var endereco = new Endereco
             {
                 Logradouro = viaCepResponse.Logradouro,
@@ -29,6 +30,14 @@ namespace Domain.Models.Mappers.Clientes
                 EmailCliente = valueObject.EmailCliente,
                 CepCliente = valueObject.CepCliente ?? string.Empty,
                 Endereco = endereco
+            };
+        }
+
+        public static ValueObjectResponseMapper MapErros(List<string> erros)
+        {
+            return new ValueObjectResponseMapper
+            {
+                Errors = erros
             };
         }
     }
