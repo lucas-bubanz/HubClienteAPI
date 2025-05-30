@@ -1,6 +1,4 @@
-using Domain.Exceptions;
 using Domain.Interfaces;
-using Domain.Models.Mappers;
 using Domain.Models.Mappers.Clientes;
 using Domain.Models.Validators.Clientes.ValidaCamposEnderecoValidator;
 using Domain.Services;
